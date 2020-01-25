@@ -1,5 +1,5 @@
 
 # Features/scripts: 
-* [Create a SIFT instance using sift-cli](https://github.com/ballaswetha/SR4AWS/tree/swetha_b/Scripts/sift_instance)
-* Set-up cross-account access to copy a snapshot of the victim EC2 from another AWS account
+* [Create a SIFT instance using sift-cli](incident-response-for-aws/Scripts/sift_instance)
+* [AWS IR Activities](incident-response-for-aws/Scripts/aws_ir_activities)
 
