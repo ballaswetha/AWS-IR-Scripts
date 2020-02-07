@@ -24,3 +24,58 @@ git clone https://github.com/aws/efs-utils
 cd efs-utils
 make deb
 sudo apt-get install -y ./build/amazon-efs-utils*deb
+
+# Install required dependencies to install libaff4 
+
+# dependencies - zlib
+cd /opt
+wget http://www.zlib.net/zlib-1.2.11.tar.gz
+tar -xvzf zlib-1.2.11.tar.gz
+cd zlib-1.2.11
+./configure
+make
+make install
+
+# dependencies - raptor2
+sudo apt-get install libraptor2-dev -y
+
+# dependencies -  google-glog
+sudo apt-get install libgoogle-glog-dev libgoogle-glog0v5 libgoogle-glog-doc -y
+
+# dependencies -  pcrexx
+sudo apt-get install libpcre++-dev -y
+
+# dependencies -  tclap (missing *.pc file - place in /opt/local/lib/pkgconfig/)
+sudo apt-get install libtclap-dev -y
+
+# dependencies - snappy
+sudo apt-get install libsnappy-dev -y
+
+# dependencies - uuid, gcc etc.
+sudo apt-get install liburiparser-dev uuid-dev libspdlog-dev libgtest-dev cmake -y
+
+#Install bison - http://ftp.gnu.org/gnu/bison/bison-3.5.tar.gz
+cd /opt
+wget http://ftp.gnu.org/gnu/bison/bison-3.5.tar.gz
+cd bison-3.5
+./configure
+make
+make install
+ln -s /usr/local/bin/bison /usr/bin/bison
+
+# Install google test
+cd /opt
+git clone https://github.com/google/googletest.git
+cd googletest/googletest
+cmake CMakeLists.txt
+make
+ln -s /opt/googletest/googletest/lib/*.a /usr/lib
+ln -s include/gtest /usr/include
+
+# Install AFF4
+cd /opt
+git clone https://github.com/google/aff4.git
+cd aff4
+./autogen.sh
+make
+make install
