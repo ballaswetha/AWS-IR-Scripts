@@ -13,7 +13,7 @@ gpg --verify sift-cli-linux.sha256.asc
 sha256sum -c sift-cli-linux.sha256.asc
 sudo mv sift-cli-linux /usr/bin/sift
 chmod 755 /usr/bin/sift
-sudo sift install
+sudo sift install --mode=server
 sudo apt-get update -y && sudo apt-get upgrade -y && sudo apt-get autoremove -y
 
 #Install efs-utils to mount the EFS
