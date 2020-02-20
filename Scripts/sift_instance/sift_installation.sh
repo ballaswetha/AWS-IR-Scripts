@@ -57,7 +57,7 @@ sudo apt-get install liburiparser-dev uuid-dev libspdlog-dev libgtest-dev cmake 
 #Install bison - http://ftp.gnu.org/gnu/bison/bison-3.5.tar.gz
 cd /opt
 wget http://ftp.gnu.org/gnu/bison/bison-3.5.tar.gz
-cd bison-3.5
+cd /opt/bison-3.5
 ./configure
 make
 make install
@@ -66,7 +66,7 @@ ln -s /usr/local/bin/bison /usr/bin/bison
 # Install google test
 cd /opt
 git clone https://github.com/google/googletest.git
-cd googletest/googletest
+cd /opt/googletest/googletest
 cmake CMakeLists.txt
 make
 ln -s /opt/googletest/googletest/lib/*.a /usr/lib
@@ -75,7 +75,7 @@ ln -s include/gtest /usr/include
 # Install AFF4
 cd /opt
 git clone https://github.com/google/aff4.git
-cd aff4
+cd /opt/aff4
 ./autogen.sh
 make
 make install
