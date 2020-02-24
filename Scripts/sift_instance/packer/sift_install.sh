@@ -23,6 +23,5 @@ sha256sum -c $sift_home/sift-cli-linux.sha256.asc
 mv $sift_home/sift-cli-linux /usr/bin/sift
 chmod 755 /usr/bin/sift
 sift install --mode=server
-sudo apt-get update -y && sudo apt-get upgrade -y && sudo apt-get autoremove -y
 
 HERE
