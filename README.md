@@ -9,7 +9,7 @@ A collection of scripts to help IR handlers automate some of the tasks required 
    -  Attach a volume to a SIFT machine for dead box forensics 
 
 #### High-level AWS architecture (focus on security) 
-![alt text](https://gitlab.com/ckcinc-private/incident-response-for-aws/blob/swetha/ArchDiagrams/ArchDiagrams_Dec%202019%20AWS%20Services.png "Logo Title Text 1")
+![alt text](https://github.com/ballaswetha/AWS-IR-Scripts/blob/main/ArchDiagrams/ArchDiagrams_Dec%202019%20AWS%20Services.png "Logo Title Text 1")
 
 [Lucidchart link](https://www.lucidchart.com/documents/edit/e62bc6ee-b8ee-4a34-ac12-0245bd08a6bf )
 
