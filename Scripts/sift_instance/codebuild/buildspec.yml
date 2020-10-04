@@ -1,0 +1,30 @@
+---
+version: 0.2
+
+phases:
+  install:
+    runtime-versions:
+      python: 3.7
+  pre_build:
+    commands:
+      - echo "Installing HashiCorp Packer..."
+      - curl -qL -o packer.zip https://releases.hashicorp.com/packer/0.12.3/packer_0.12.3_linux_amd64.zip && unzip packer.zip
+      - echo "Installing jq..."
+      - curl -qL -o jq https://stedolan.github.io/jq/download/linux64/jq && chmod +x ./jq
+      - echo "Validating sift_packer-template.json"
+      - ./packer validate sift_packer-template.json
+  build:
+    commands:
+      - echo "Configuring AWS credentials"
+      - curl -qL -o aws_credentials.json http://169.254.170.2/$AWS_CONTAINER_CREDENTIALS_RELATIVE_URI > aws_credentials.json
+      - aws configure set region $AWS_REGION
+      - aws configure set aws_access_key_id `./jq -r '.AccessKeyId' aws_credentials.json`
+      - aws configure set aws_secret_access_key `./jq -r '.SecretAccessKey' aws_credentials.json`
+      - aws configure set aws_session_token `./jq -r '.Token' aws_credentials.json`
+      - echo "Building Packer template, sift_packer-template.json"
+      - ./packer build sift_packer-template.json
+      - echo "Create SSM Parameter"
+      - aws ssm put-parameter --name "siftami" --type "String" --value `jq -r '.builds[0].artifact_id'  manifest.json | cut -d':' -f2` --overwrite
+  post_build:
+    commands:
+      - echo "Build completed on `date`"
